@@ -13,6 +13,7 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		//makes 1000 true anagrams then 1000 fake anagrams.
 		System.out.println("TRUE ANAGRAMS:");
 		for(int i = 0; i < 1000; i++){
 			make_true_anagram(5);
@@ -64,6 +65,7 @@ public class Main {
 	}
 	public static boolean isAnagram(String anagram){
 		Scanner s = null;
+		//makes unique id for every string through multiplying prime numbers
 		BigInteger wordValue = new BigInteger("1");
 		for(int i = 0; i < anagram.length(); i++){
 			switch(Character.toLowerCase(anagram.charAt(i))){
@@ -121,6 +123,7 @@ public class Main {
 			break;
 			}
 		}
+		//opens scanner to read dictionary
 		File words = new File("words.txt");
 		try {
 			s = new Scanner(words);
@@ -128,6 +131,7 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		//gives every single word a unique id
 		while(s.hasNext()){
 			String temp = s.nextLine();
 			BigInteger tempValue = new BigInteger("1");
@@ -187,6 +191,7 @@ public class Main {
 				break;
 				}
 			}
+			//if the unique id for a word in the dictionary matches the word inputted into the function, it returns true
 			if(wordValue.equals(tempValue)){
 				System.out.println(anagram + " is an anagram for " + temp);
 				return true;
