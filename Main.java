@@ -13,14 +13,24 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		int num;
+		int trueAnagrams;
+		int falseAnagrams;
+		Scanner s = new Scanner(System.in);
+		System.out.println("How many letters do you want the anagram to be?");
+		num = s.nextInt();
+		System.out.println("How many true anagrams do you want?");
+		trueAnagrams = s.nextInt();
+		System.out.println("How many false anagrams do you want?");
+		falseAnagrams = s.nextInt();
 		//makes 1000 true anagrams then 1000 fake anagrams.
 		System.out.println("TRUE ANAGRAMS:");
-		for(int i = 0; i < 1000; i++){
-			make_true_anagram(5);
+		for(int i = 0; i < trueAnagrams; i++){
+			System.out.println(make_true_anagram(num));
 		}
 		System.out.println("FALSE ANAGRAMS:");
-		for(int i = 0; i < 1000; i++){
-			System.out.println(make_false_anagram(5));
+		for(int i = 0; i < falseAnagrams; i++){
+			System.out.println(make_false_anagram(num));
 		}
 
 	}
@@ -193,7 +203,7 @@ public class Main {
 			}
 			//if the unique id for a word in the dictionary matches the word inputted into the function, it returns true
 			if(wordValue.equals(tempValue)){
-				System.out.println(anagram + " is an anagram for " + temp);
+				//System.out.println(anagram + " is an anagram for " + temp);
 				return true;
 			}
 		}
