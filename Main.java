@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -12,10 +14,14 @@ public class Main {
 	/**
 	 * @param args
 	 */
+	static ArrayList<BigInteger> idList = new ArrayList<BigInteger>();
+
 	public static void main(String[] args) {
 		int num;
 		int trueAnagrams;
 		int falseAnagrams;
+		populateDictionary();
+
 		Scanner s = new Scanner(System.in);
 		System.out.println("How many letters do you want the anagram to be?");
 		num = s.nextInt();
@@ -74,7 +80,6 @@ public class Main {
 
 	}
 	public static boolean isAnagram(String anagram){
-		Scanner s = null;
 		//makes unique id for every string through multiplying prime numbers
 		BigInteger wordValue = new BigInteger("1");
 		for(int i = 0; i < anagram.length(); i++){
@@ -133,6 +138,19 @@ public class Main {
 			break;
 			}
 		}
+		int location = Collections.binarySearch(idList, wordValue);
+		if(location >= 0){
+			return true;
+		} 
+		else{
+			return false;
+		}
+	}
+
+
+
+	public static void populateDictionary(){
+		Scanner s = null;
 		//opens scanner to read dictionary
 		File words = new File("words.txt");
 		try {
@@ -201,14 +219,8 @@ public class Main {
 				break;
 				}
 			}
-			//if the unique id for a word in the dictionary matches the word inputted into the function, it returns true
-			if(wordValue.equals(tempValue)){
-				//System.out.println(anagram + " is an anagram for " + temp);
-				return true;
-			}
+			idList.add(tempValue);
 		}
-		return false;
+		Collections.sort(idList);
 	}
-
-
 }
